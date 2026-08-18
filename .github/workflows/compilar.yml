@@ -16,7 +16,7 @@ jobs:
       - name: Compilar PDF de LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: Presentacion 1.tex # Reemplaza por el nombre de tu archivo .tex principal si no se llama main.tex
+          root_file: Presentacion1.tex # Reemplaza por el nombre de tu archivo .tex principal si no se llama main.tex
 
       - name: Guardar y Publicar el PDF
         run: |
