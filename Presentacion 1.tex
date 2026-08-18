@@ -1,0 +1,425 @@
+\documentclass[10pt,aspectratio=169,spanish]{beamer}
+
+% --- PAQUETES Y CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+% --- TEMA Y ESTILO VISUAL ---
+\usetheme{Madrid}
+\usecolortheme{whale}
+
+% Colores Institucionales UFRO / Matemáticas
+\definecolor{ufroblue}{RGB}{0, 51, 102}
+\definecolor{ufrogold}{RGB}{212, 160, 23}
+\definecolor{mathred}{RGB}{180, 40, 40}
+\definecolor{mathgreen}{RGB}{30, 130, 60}
+
+\setbeamercolor{palette primary}{bg=ufroblue,fg=white}
+\setbeamercolor{palette secondary}{bg=ufroblue!85,fg=white}
+\setbeamercolor{palette tertiary}{bg=ufroblue!70,fg=white}
+\setbeamercolor{titlelike}{bg=ufroblue,fg=white}
+\setbeamercolor{structure}{fg=ufroblue}
+\setbeamercolor{block title}{bg=ufroblue,fg=white}
+\setbeamercolor{block body}{bg=ufroblue!5,fg=black}
+\setbeamercolor{block title example}{bg=mathgreen,fg=white}
+\setbeamercolor{block body example}{bg=mathgreen!5,fg=black}
+\setbeamercolor{block title alerted}{bg=mathred,fg=white}
+\setbeamercolor{block body alerted}{bg=mathred!5,fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% --- DATOS DEL CURSO Y DOCENTE ---
+\title[Rectas y Circunferencias]{Geometría Analítica: La Recta y la Circunferencia}
+\subtitle{Asignatura: Trigonometría y Geometría Analítica (IME078)}
+\author[Prof. José Labrín Parra]{Prof. José  Labrín Parra}
+\institute[UFRO]{
+  Pedagogía en Matemática\\
+  Departamento de Matemática y Estadística\\
+  Facultad de Eduación y Humanidades\\
+  Universidad de La Frontera
+}
+\date{Semestre II -- 2026}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% PORTADA
+% -----------------------------------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% TEMARIO
+% -----------------------------------------------------------------------------
+\begin{frame}{Contenido Programático}
+  \tableofcontents
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\section{Distancia entre Puntos y División de Segmentos}
+% -----------------------------------------------------------------------------
+
+\begin{frame}{1.1 Distancia entre dos puntos en el plano}
+\begin{columns}
+  \column{0.55\textwidth}
+  \begin{block}{Teorema (Distancia Euclidiana)}
+    Dados dos puntos $A(x_1, y_1)$ y $B(x_2, y_2)$ en el plano cartesiano $\mathbb{R}^2$, la distancia $d(A,B)$ está dada por:
+    \[
+      d(A,B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+    \]
+  \end{block}
+  \begin{proof}[Demostración corta]
+    Construyendo el triángulo rectángulo $ABC$ con $C(x_2, y_1)$, se tiene $AC = |x_2 - x_1|$ y $BC = |y_2 - y_1|$. Por Teorema de Pitágoras:
+    $d(A,B)^2 = AC^2 + BC^2$.
+  \end{proof}
+
+  \column{0.45\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[->,thick] (-0.5,0) -- (4.5,0) node[right] {$x$};
+    \draw[->,thick] (0,-0.5) -- (0,4.5) node[above] {$y$};
+    \coordinate (A) at (1,1);
+    \coordinate (B) at (4,3.5);
+    \coordinate (C) at (4,1);
+    
+    \draw[line width=1.2pt,ufroblue] (A) -- (B) node[midway,above left] {$d(A,B)$};
+    \draw[dashed,gray] (A) -- (C) node[midway,below] {$|x_2-x_1|$};
+    \draw[dashed,gray] (C) -- (B) node[midway,right] {$|y_2-y_1|$};
+    
+    \filldraw[mathred] (A) circle (2pt) node[below left] {$A(x_1,y_1)$};
+    \filldraw[mathred] (B) circle (2pt) node[above right] {$B(x_2,y_2)$};
+    \filldraw[gray] (C) circle (1.5pt) node[below right] {$C(x_2,y_1)$};
+    \draw (3.7,1) -- (3.7,1.3) -- (4,1.3);
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1.2 División de un segmento en una razón dada}
+\begin{block}{Punto de División $P(x,y)$}
+Si $P_1(x_1,y_1)$ y $P_2(x_2,y_2)$ son extremos de un segmento, el punto $P(x,y)$ tal que $\frac{\vec{P_1P}}{\vec{PP_2}} = r$ ($r \neq -1$) posee coordenadas:
+\[
+  x = \dfrac{x_1 + r x_2}{1 + r}, \qquad y = \dfrac{y_1 + r y_2}{1 + r}
+\]
+\end{block}
+
+\begin{columns}
+\column{0.6\textwidth}
+  \begin{alertblock}{Casos Especiales}
+  \begin{itemize}
+    \item \textbf{Punto Medio ($r=1$):} $M = \left(\frac{x_1+x_2}{2}, \frac{y_1+y_2}{2}\right)$.
+    \item \textbf{Razón Negativa ($r < 0$):} El punto $P$ se ubica exterior al segmento $P_1P_2$.
+  \end{itemize}
+  \end{alertblock}
+\column{0.4\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.7]
+    \draw[->] (-0.5,0) -- (4.5,0);
+    \draw[->] (0,-0.5) -- (0,3.5);
+    \coordinate (P1) at (0.5,0.5);
+    \coordinate (P) at (2.3,1.7);
+    \coordinate (P2) at (3.5,2.5);
+    
+    \draw[line width=1pt,ufroblue] (P1) -- (P2);
+    \filldraw (P1) circle (2pt) node[below] {$P_1$};
+    \filldraw[mathred] (P) circle (2.5pt) node[above left] {$P(x,y)$};
+    \filldraw (P2) circle (2pt) node[above] {$P_2$};
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1.3 Problemas Propuestos: Geometría Básica y Segmentos}
+\begin{block}{Ejercicios Propuestos}
+\begin{enumerate}
+    \item \textbf{Distancia de Puntos:} Dados los puntos $A(-3, 4)$ y $B(5, -2)$, determine las coordenadas de un punto $C$ sobre el eje $Y$ de modo que el triángulo $ABC$ sea isósceles con $AC = BC$.
+    \item \textbf{División de Segmento:} Sean $P_1(-2, 5)$ y $P_2(6, -3)$ los extremos del segmento $P_1P_2$. Halle las coordenadas de los puntos $A$ y $B$ que trisecan al segmento (es decir, lo dividen en tres partes de igual longitud).
+    \item \textbf{Punto Medio:} Determine el valor de $k$ para que la distancia entre $P(k, 2)$ y $Q(3, -1)$ sea exactamente $5$ unidades.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+\section{Lugar Geométrico y la Ecuación de la Recta}
+% -----------------------------------------------------------------------------
+
+\begin{frame}{2.1 Concepto de Lugar Geométrico}
+\begin{block}{Definición}
+Un \textbf{Lugar Geométrico} es el conjunto de todos los puntos $P(x,y)$ en el plano que satisfacen una propiedad o condición geométrica común dada por una ecuación $F(x,y)=0$.
+\end{block}
+
+\begin{exampleblock}{Ejemplo Desarrollado}
+Encuentre el lugar geométrico de los puntos $P(x,y)$ que equidistan de $A(1,-2)$ y $B(5,4)$.
+\pause
+\begin{align*}
+  d(P,A) &= d(P,B) \implies (x-1)^2 + (y+2)^2 = (x-5)^2 + (y-4)^2 \\
+  x^2 - 2x + 1 + y^2 + 4y + 4 &= x^2 - 10x + 25 + y^2 - 8y + 16 \\
+  8x + 12y - 36 &= 0 \implies \mathbf{2x + 3y - 9 = 0} \quad \text{(Simetral/Mediatriz)}
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{2.2 Pendiente y Formas de la Ecuación de la Recta}
+\begin{columns}
+\column{0.48\textwidth}
+  \begin{block}{Pendiente ($m$)}
+  Si $\alpha$ es el ángulo de inclinación:
+  \[
+    m = \tan(\alpha) = \frac{y_2 - y_1}{x_2 - x_1} \quad (x_1 \neq x_2)
+  \]
+  \end{block}
+
+  \begin{block}{Rectas Paralelas y Perpendiculares}
+  Dadas $L_1, L_2$ con pendientes $m_1, m_2$:
+  \begin{itemize}
+    \item $L_1 \parallel L_2 \iff m_1 = m_2$
+    \item $L_1 \perp L_2 \iff m_1 \cdot m_2 = -1$
+  \end{itemize}
+  \end{block}
+
+\column{0.48\textwidth}
+  \begin{block}{Resumen de Formas Espaciales}
+  \begin{enumerate}
+    \item \textbf{Punto-Pendiente:}
+    $y - y_1 = m(x - x_1)$
+    \item \textbf{Principal / Intersección:}
+    $y = mx + n$
+    \item \textbf{General:}
+    $Ax + By + C = 0$
+    \item \textbf{Canónica / Simétrica:}
+    $\frac{x}{a} + \frac{y}{b} = 1$
+  \end{enumerate}
+  \end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2.3 Distancia de un Punto a una Recta}
+\begin{columns}
+\column{0.55\textwidth}
+  \begin{block}{Teorema}
+  La distancia perpendicular $d$ desde el punto $P_0(x_0, y_0)$ a la recta $L: Ax + By + C = 0$ viene dada por:
+  \[
+    d(P_0, L) = \frac{|A x_0 + B y_0 + C|}{\sqrt{A^2 + B^2}}
+  \]
+  \end{block}
+
+  \begin{exampleblock}{Aplicación}
+  Calcule la distancia de $P(0,1)$ a $L: -x + 2y - 7 = 0$.
+  \[
+    d = \frac{|(-1)(0) + 2(1) - 7|}{\sqrt{(-1)^2 + 2^2}} = \frac{|-5|}{\sqrt{5}} = \sqrt{5}
+  \]
+  \end{exampleblock}
+
+\column{0.45\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.75]
+    \draw[->] (-1,0) -- (4,0);
+    \draw[->] (0,-1) -- (0,4);
+    \draw[line width=1.2pt, ufroblue] (-0.5,3.5) -- (3.5,0.5) node[right] {$L$};
+    \filldraw[mathred] (2.5,3) circle (2pt) node[above right] {$P_0(x_0,y_0)$};
+    \draw[dashed, mathred, thick] (2.5,3) -- (1.5,2) node[midway,above left] {$d$};
+    \draw (1.35,2.15) -- (1.5,2.3) -- (1.65,2.15);
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2.4 Problemas Propuestos: La Recta}
+\begin{block}{Ejercicios Propuestos}
+\begin{enumerate}
+    \item \textbf{Forma Canónica:} Una recta $L$ pasa por el punto $P(-2, 3)$ y determina con los ejes coordinados un triángulo de área $12 \text{ u}^2$ ubicado en el segundo cuadrante. Determine la ecuación general de $L$.
+    \item \textbf{Familia de Rectas:} Halle la ecuación de la recta que pasa por la intersección de $L_1: 2x - 3y + 5 = 0$ y $L_2: 3x + y - 9 = 0$, y que además es perpendicular a la recta $L_3: x - 2y + 4 = 0$.
+    \item \textbf{Distancia a la Recta:} Calcule el valor de la constante $C$ para que la distancia de la recta $L: 5x + 12y + C = 0$ al punto $P(2, -1)$ sea igual a $4$ unidades.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\section{La Circunferencia}
+% -----------------------------------------------------------------------------
+
+\begin{frame}{3.1 Ecuaciones de la Circunferencia}
+\begin{block}{Definición}
+Lugar geométrico de los puntos $P(x,y)$ cuya distancia a un punto fijo $C(h,k)$ (centro) es una constante $r > 0$ (radio).
+\end{block}
+
+\begin{columns}
+\column{0.48\textwidth}
+  \begin{block}{Forma Ordinaria / Canónica}
+  \[ (x - h)^2 + (y - k)^2 = r^2 \]
+  Si el centro es $C(0,0)$:
+  \[ x^2 + y^2 = r^2 \]
+  \end{block}
+
+\column{0.48\textwidth}
+  \begin{block}{Forma General}
+  \[ x^2 + y^2 + Dx + Ey + F = 0 \]
+  donde:
+  $h = -\frac{D}{2}, \quad k = -\frac{E}{2}, \quad r = \frac{1}{2}\sqrt{D^2 + E^2 - 4F}$
+  \end{block}
+\end{columns}
+
+\pause
+\begin{alertblock}{Análisis del Discriminante de Radio ($\Delta = D^2 + E^2 - 4F$)}
+\begin{itemize}
+  \item Si $\Delta > 0$: Circunferencia real.
+  \item Si $\Delta = 0$: Un único punto $(h,k)$ (circunferencia degenerada).
+  \item Si $\Delta < 0$: Lugar geométrico vacío (conjunto vacío en $\mathbb{R}^2$).
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{3.2 Posiciones Relativas: Recta y Circunferencia}
+Dada $C: (x-h)^2 + (y-k)^2 = r^2$ y la recta $L: y = mx + n$. Sustituyendo $y$ obtenemos $ax^2 + bx + c = 0$.
+
+\begin{columns}
+\column{0.3\textwidth}
+  \begin{block}{Exterior ($\Delta < 0$)}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.5]
+    \draw (0,0) circle (1.2);
+    \draw[ufroblue,thick] (-1.8,1.8) -- (1.8,1.8);
+  \end{tikzpicture}
+  \end{center}
+  $d(C,L) > r$\\ Sin intersección.
+  \end{block}
+
+\column{0.3\textwidth}
+  \begin{block}{Tangente ($\Delta = 0$)}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.5]
+    \draw (0,0) circle (1.2);
+    \draw[mathgreen,thick] (-1.8,1.2) -- (1.8,1.2);
+    \filldraw[mathred] (0,1.2) circle (2pt);
+  \end{tikzpicture}
+  \end{center}
+  $d(C,L) = r$\\ 1 punto de contacto.
+  \end{block}
+
+\column{0.3\textwidth}
+  \begin{block}{Secante ($\Delta > 0$)}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.5]
+    \draw (0,0) circle (1.2);
+    \draw[mathred,thick] (-1.8,0.5) -- (1.8,0.5);
+    \filldraw (-1.1,0.5) circle (2pt);
+    \filldraw (1.1,0.5) circle (2pt);
+  \end{tikzpicture}
+  \end{center}
+  $d(C,L) < r$\\ 2 puntos de corte.
+  \end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{3.3 Tangente a una Circunferencia desde un punto exterior}
+\begin{exampleblock}{Problema  Resuelto}
+Encontrar las rectas tangentes a $(x-2)^2 + (y-1)^2 = 5$ que pasan por $P(-3,6)$.
+\end{exampleblock}
+\pause
+\textbf{Solución:}
+1. Familia de rectas por $P(-3,6)$: $y - 6 = m(x + 3) \implies mx - y + (3m + 6) = 0$.
+2. Distancia del centro $C(2,1)$ a la recta debe ser igual al radio $r = \sqrt{5}$:
+\[
+  \frac{|m(2) - 1 + 3m + 6|}{\sqrt{m^2 + 1}} = \sqrt{5} \implies \frac{|5m + 5|}{\sqrt{m^2 + 1}} = \sqrt{5}
+\]
+3. Elevando al cuadrado:
+\[
+  (5m + 5)^2 = 5(m^2 + 1) \implies 25m^2 + 50m + 25 = 5m^2 + 5 \implies 20m^2 + 50m + 20 = 0
+\]
+Dividiendo por 10: $2m^2 + 5m + 2 = 0 \implies (2m+1)(m+2) = 0 \implies \mathbf{m_1 = -1/2}, \mathbf{m_2 = -2}$.
+Rectas tangentes: $L_1: x + 2y - 9 = 0$ \quad y \quad $L_2: 2x + y = 0$.
+\end{frame}
+
+
+\begin{frame}{3.4 Problemas Propuestos: La Circunferencia}
+\begin{block}{Ejercicios Propuestos}
+\begin{enumerate}
+    \item \textbf{Ecuación General:} Muestre que la ecuación $x^2 + y^2 - 6x + 4y + 13 = 0$ representa un punto (circunferencia degenerada) e identifique sus coordenadas.
+    \item \textbf{Tangencia:} Encuentre la ecuación de la circunferencia centrada en $C(-1, 4)$ y que es tangente a la recta $L: 3x - 4y + 4 = 0$.
+    \item \textbf{Intersección de Recta y Círculo:} Determine para qué valores del parámetro $k$ la recta $y = x + k$ es secante, tangente o exterior a la circunferencia $x^2 + y^2 = 8$.
+\end{enumerate}
+\end{block}
+\end{frame}
+% -----------------------------------------------------------------------------
+\section{Ejercicios Avanzados: PAES y Olimpiadas}
+% -----------------------------------------------------------------------------
+
+\begin{frame}{4.1 Problema Tipo PAES (Competencia Matemática 2 - M2)}
+\begin{alertblock}{Ejercicio Tipo PAES M2}
+Un barco navega en el plano cartesiano siguiendo una trayectoria lineal dada por $L: 3x - 4y + 12 = 0$. Una estación de faro de transmisión delimitada por la circunferencia de cobertura $(x-2)^2 + (y+1)^2 = 16$ desea saber en qué punto la embarcación estará a la mínima distancia del faro $C(2,-1)$ y si logra ingresar a la zona de cobertura.
+\end{alertblock}
+
+\pause
+\textbf{Resolución:}
+\begin{enumerate}
+  \item Distancia del centro del faro $C(2,-1)$ a la trayectoria del barco:
+  \[
+    d = \frac{|3(2) - 4(-1) + 12|}{\sqrt{3^2 + (-4)^2}} = \frac{|6 + 4 + 12|}{5} = \frac{22}{5} = 4.4
+  \]
+  \item Como $r = \sqrt{16} = 4$ y $d = 4.4 > 4$, la distancia mínima al centro es $4.4$.
+  \item La distancia mínima al **borde de cobertura** del faro es $d - r = 4.4 - 4 = 0.4$ unidades.
+  \item \textbf{Conclusión PAES:} El barco **no** ingresa a la zona de cobertura del faro.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{4.2 Problema Tipo Olimpiada Matemática}
+\begin{block}{Desafío de Olimpiada (Problema de Apolonio)}
+Demuestre que el lugar geométrico de los puntos $P(x,y)$ del plano tales que el cociente de sus distancias a dos puntos fijos $A(-a,0)$ y $B(b,0)$ es una constante $k \neq 1$, corresponde a una circunferencia (Circunferencia de Apolonio).
+\end{block}
+
+\pause
+\begin{proof}[Demostración]
+Sea $\frac{d(P,A)}{d(P,B)} = k \implies d(P,A)^2 = k^2 d(P,B)^2$. En coordenadas:
+$
+  (x+a)^2 + y^2 = k^2 \left( (x-b)^2 + y^2 \right)
+$
+Expandiendo y reagrupando términos:
+$
+  (1 - k^2)x^2 + (1 - k^2)y^2 + 2(a + k^2 b)x + (a^2 - k^2 b^2) = 0
+$
+Como $k \neq 1$, podemos dividir todo por $1 - k^2$:
+\[
+  x^2 + y^2 + \left(\frac{2(a + k^2 b)}{1 - k^2}\right)x + \frac{a^2 - k^2 b^2}{1 - k^2} = 0
+\]
+Al completar cuadrados, esta expresión toma la forma ordinaria $(x-h)^2 + y^2 = R^2$, lo cual representa una circunferencia centrada en el eje $X$.
+\end{proof}
+\end{frame}
+\end{document}
+% -----------------------------------------------------------------------------
+\section{Actividad Práctica en GeoGebra}
+% -----------------------------------------------------------------------------
+
+\begin{frame}{5. Laboratorio Práctico con GeoGebra}
+\begin{exampleblock}{Instrucciones para el Taller en Laboratorio}
+Abran GeoGebra Suite Calculadora / Geometría e introduzcan la siguiente secuencia de comandos para verificar conjeturas sobre tangencia:
+\end{exampleblock}
+
+\begin{enumerate}
+  \item Crear punto $C = (2, 1)$ y deslizador de radio $r = \text{EjecutarSlider}(1, 5)$.
+  \item Definir la circunferencia: \texttt{c = Círculo(C, r)}.
+  \item Crear un punto exterior $P = (-3, 6)$.
+  \item Usar la herramienta/comando: \texttt{Tangentes(P, c)}.
+  \item Crear los puntos de tangencia $A$ y $B$ mediante \texttt{Intersección(L_1, c)}.
+  \item Comprobar que los ángulos $\angle PAC$ y $\angle PBC$ son estrictamente de $90^\circ$ (\texttt{Ángulo(P, A, C)}).
+\end{enumerate}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% CIERRE
+% -----------------------------------------------------------------------------
+\begin{frame}
+  \begin{center}
+    \Huge\bfseries\color{ufroblue} ¡Muchas Gracias! \\[1cm]
+    \Large Preguntas y Discusión
+  \end{center}
+\end{frame}
+
+\end{document}
