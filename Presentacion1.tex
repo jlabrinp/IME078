@@ -200,53 +200,307 @@ Encuentre el lugar geométrico de los puntos $P(x,y)$ que equidistan de $A(1,-2)
 \end{align*}
 \end{exampleblock}
 \end{frame}
-
-\begin{frame}{2.2 Pendiente y Formas de la Ecuación de la Recta}
+\begin{frame}{2.1 La Recta como Lugar Geométrico}
 \begin{columns}
-\column{0.48\textwidth}
-  \begin{block}{Pendiente ($m$)}
-  Si $\alpha$ es el ángulo de inclinación:
+\column{0.55\textwidth}
+  \begin{block}{Definición Formal}
+  Una \textbf{recta} $L$ es el lugar geométrico de todos los puntos $P(x, y)$ en el plano cartesiano tales que el cociente entre las diferencias de sus coordenadas con respecto a un punto fijo $P_0(x_0, y_0)$ es constante.
+  \end{block}
+
+  \begin{block}{Concepto de Pendiente ($m$)}
+  Dicha constante se denomina \textbf{pendiente} ($m$) y representa la razón de cambio de $y$ respecto a $x$:
   \[
-    m = \tan(\alpha) = \frac{y_2 - y_1}{x_2 - x_1} \quad (x_1 \neq x_2)
+    m = \frac{\Delta y}{\Delta x} = \frac{y - y_0}{x - x_0} \quad \text{con } x \neq x_0
   \]
+  Geométricamente, la pendiente equivale a la tangente del ángulo de inclinación $\alpha$: $m = \tan(\alpha)$.
   \end{block}
 
-  \begin{block}{Rectas Paralelas y Perpendiculares}
-  Dadas $L_1, L_2$ con pendientes $m_1, m_2$:
-  \begin{itemize}
-    \item $L_1 \parallel L_2 \iff m_1 = m_2$
-    \item $L_1 \perp L_2 \iff m_1 \cdot m_2 = -1$
-  \end{itemize}
-  \end{block}
+\column{0.45\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.75]
+    % Ejes cartesianos
+    \draw[->, thick] (-1,0) -- (4,0) node[right] {$X$};
+    \draw[->, thick] (0,-1) -- (0,4) node[above] {$Y$};
+    \node[below left] at (0,0) {$O$};
 
-\column{0.48\textwidth}
-  \begin{block}{Resumen de Formas Espaciales}
-  \begin{enumerate}
-    \item \textbf{Punto-Pendiente:}
-    $y - y_1 = m(x - x_1)$
-    \item \textbf{Principal / Intersección:}
-    $y = mx + n$
-    \item \textbf{General:}
-    $Ax + By + C = 0$
-    \item \textbf{Canónica / Simétrica:}
-    $\frac{x}{a} + \frac{y}{b} = 1$
-  \end{enumerate}
-  \end{block}
+    % Recta L
+    \draw[line width=1.2pt, ufroblue] (-0.5,0.5) -- (3.5,3.7) node[right] {$L$};
+
+    % Puntos P0 y P
+    \filldraw[mathred] (1,1.7) circle (2pt) node[above left] {$P_0(x_0,y_0)$};
+    \filldraw[mathred] (2.8,3.14) circle (2pt) node[above left] {$P(x,y)$};
+
+    % Triángulo incremental
+    \draw[dashed, gray] (1,1.7) -- (2.8,1.7) node[midway, below] {\small $\Delta x$};
+    \draw[dashed, gray] (2.8,1.7) -- (2.8,3.14) node[midway, right] {\small $\Delta y$};
+
+    % Ángulo alfa
+    \draw (1.5,1.7) arc (0:38:0.5);
+    \node at (1.8,1.9) {\small $\alpha$};
+  \end{tikzpicture}
+  \end{center}
 \end{columns}
 \end{frame}
 
-\begin{frame}{2.3 Distancia de un Punto a una Recta}
+
+\begin{frame}{2.2 Formas de la Ecuación de la Recta}
+
+  \begin{block}{1. Forma Punto-Pendiente y Principal}
+  \begin{itemize}
+    \item \textbf{Punto-Pendiente:} $y - y_0 = m(x - x_0)$
+    \item \textbf{Principal (Pendiente-Intersección):} $y = mx + b$
+  \end{itemize}
+  \end{block}
+
+
+  \begin{block}{3. Forma General}
+  Ecuación lineal de primer grado:
+  \[
+    Ax + By + C = 0 \quad (m = -A/B)
+  \]
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}{2.2 Formas de la Ecuación de la Recta}
+\begin{columns}
+\column{0.58\textwidth}
+  \begin{block}{2. Forma Simétrica (o Canónica)}
+  Si la recta intersecta a los ejes en $(a, 0)$ y $(0, b)$ con $a, b \neq 0$:
+  \[
+    \frac{x}{a} + \frac{y}{b} = 1
+  \]
+  \textit{Donde $a$ es la abscisa en el origen y $b$ es la ordenada en el origen.}
+  \end{block}
+
+
+\column{0.42\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.75]
+    % Ejes cartesianos
+    \draw[->, thick] (-0.8,0) -- (3.5,0) node[right] {$X$};
+    \draw[->, thick] (0,-0.8) -- (0,3.5) node[above] {$Y$};
+    \node[below left] at (0,0) {$O$};
+
+    % Recta que pasa por (2,0) y (0,2.5)
+    \draw[line width=1.2pt, ufroblue] (-0.4,3) -- (2.8,-1) node[right] {$L$};
+
+    % Puntos de corte
+    \filldraw[mathred] (2,0) circle (2pt) node[above right] {$(a, 0)$};
+    \filldraw[mathred] (0,2.5) circle (2pt) node[left] {$(0, b)$};
+
+    % Etiquetas de las distancias a y b
+    \draw[dashed, mathred] (0,0) -- (2,0) node[midway, above] { };
+    \draw[dashed, mathred] (0,0) -- (0,2.5) node[midway, right] { };
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{2.3 Paralelismo y Perpendicularidad}
+\begin{columns}
+\column{0.52\textwidth}
+  \begin{block}{Rectas Paralelas ($L_1 \parallel L_2$)}
+  Dos rectas no verticales son paralelas si y solo si sus pendientes son iguales (mismo ángulo de inclinación):
+  \[
+    L_1 \parallel L_2 \iff m_1 = m_2
+  \]
+  \end{block}
+
+  \begin{block}{Rectas Perpendiculares ($L_1 \perp L_2$)}
+  Dos rectas no verticales son perpendiculares si y solo si el producto de sus pendientes es $-1$:
+  \[
+    L_1 \perp L_2 \iff m_1 \cdot m_2 = -1 \iff m_2 = -\frac{1}{m_1}
+  \]
+  \end{block}
+
+\column{0.48\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.7]
+    \draw[->] (-1,0) -- (3.5,0) node[right] {$X$};
+    \draw[->] (0,-1) -- (0,3.5) node[above] {$Y$};
+
+    % Paralelas
+    \draw[line width=1pt, ufroblue] (-0.5,0) -- (2.5,3) node[right] {$L_1$};
+    \draw[line width=1pt, ufroblue] (0.5,0) -- (3.5,3) node[right] {$L_2$};
+
+    % Perpendicular
+    \draw[line width=1pt, mathred] (-0.5,2.5) -- (2.5,-0.5) node[right] {$L_3$};
+    
+    % Marca de ángulo recto
+    \draw (0.9,1.6) -- (1.05,1.75) -- (0.9,1.9);
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+
+  \begin{frame}{2.3 Paralelismo y Perpendicularidad}
+\begin{block}{Ejercicios Propuestos}
+\begin{enumerate}
+    \item \textbf{Ecuación con Relación de Intersecciones:} Hallar la ecuación de la recta que pasa por el punto $(2,3)$ y cuya abscisa en el origen es el doble que la ordenada en el origen.
+
+    \item \textbf{Punto Equidistante:} Hallar un punto de la recta $3x + y + 4 = 0$ que equidista de los puntos $(-5, 6)$ y $(3, 2)$.
+
+    \item \textbf{Recta Perpendicular:} Hallar la ecuación de la recta de abscisa en el origen $-3/7$ y que es perpendicular a la recta $3x + 4y - 10 = 0$.
+
+    \item \textbf{Perpendicular por Intersección:} Hallar la ecuación de la perpendicular a la recta $2x + 7y - 3 = 0$ en su punto de intersección con $3x - 2y + 8 = 0$.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Soluciones}
+\begin{enumerate}
+    \item \textbf{Ecuación con Relación de Intersecciones:} 
+    La ecuación de la recta que pasa por $(2,3)$ con $a = 2b$ es
+    \[
+    \boxed{x + 2y - 8 = 0}.
+    \]
+
+    \item \textbf{Punto Equidistante:} 
+    El punto sobre la recta $3x + y + 4 = 0$ equidistante a $(-5,6)$ y $(3,2)$ es
+    \[
+    \boxed{P(-2, 2)}.
+    \]
+
+    \item \textbf{Recta Perpendicular:} 
+    La ecuación de la recta perpendicular a $3x + 4y - 10 = 0$ con $a = -3/7$ es
+    \[
+    \boxed{28x - 21y + 12 = 0}.
+    \]
+
+    \item \textbf{Perpendicular por Intersección:} 
+    La recta perpendicular a $2x + 7y - 3 = 0$ en su punto de intersección con $3x - 2y + 8 = 0$ es
+    \[
+    \boxed{7x - 2y + 16 = 0}.
+    \]
+\end{enumerate}
+\end{frame}
+
+% ==========================================
+% SECCIÓN 2.4: ÁNGULO ENTRE DOS RECTAS
+% ==========================================
+
+\begin{frame}{2.4 Ángulo entre dos Rectas}
 \begin{columns}
 \column{0.55\textwidth}
   \begin{block}{Teorema}
-  La distancia perpendicular $d$ desde el punto $P_0(x_0, y_0)$ a la recta $L: Ax + By + C = 0$ viene dada por:
+  El ángulo $\alpha$ medido en \textbf{sentido antihorario} desde la recta $L_1$ (con pendiente $m_1$) hacia la recta $L_2$ (con pendiente $m_2$) satisface:
+  \[
+    \tan(\alpha) = \frac{m_2 - m_1}{1 + m_2 m_1} \quad (m_1 m_2 \neq -1)
+  \]
+  \end{block}
+
+  \begin{exampleblock}{Demostración}
+  Por geometría exterior en el triángulo, $\theta_2 = \alpha + \theta_1 \implies \alpha = \theta_2 - \theta_1$.
+  \[
+    \begin{aligned}
+      \tan(\alpha) &= \tan(\theta_2 - \theta_1) \\
+      &= \frac{\tan(\theta_2) - \tan(\theta_1)}{1 + \tan(\theta_2)\tan(\theta_1)} = \frac{m_2 - m_1}{1 + m_2 m_1}
+    \end{aligned}
+  \]
+  \end{exampleblock}
+
+\column{0.45\textwidth}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.75]
+    % Ejes
+    \draw[->, thick] (-1,0) -- (4,0) node[right] {$X$};
+    \draw[->, thick] (0,-1.5) -- (0,4) node[above] {$Y$};
+    \node[above left] at (0,0) {$O$};
+
+    % Recta L1
+    \draw[line width=1.2pt] (-1,-1) -- (3,3) node[below right] {$L_1$};
+    % Recta L2
+    \draw[line width=1.2pt] (0.5,3.5) -- (3.5,-1) node[right] {$L_2$};
+
+    % Ángulo theta_1
+    \draw[->, thick] (0.6,0) arc (0:45:0.6);
+    \node at (0.9,0.3) {\small $\theta_1$};
+
+    % Ángulo theta_2
+    \draw[->, thick] (3.3,0) arc (0:118:0.5);
+    \node at (3,0.7) {\small $\theta_2$};
+
+    % Ángulo alpha
+    \draw[->, thick] (2.1,2.1) arc (45:120:0.6);
+    \node at (1.8,2.6) {$\alpha$};
+  \end{tikzpicture}
+  \end{center}
+\end{columns}
+\end{frame}
+
+
+% ==========================================
+% SECCIÓN 2.6: PROBLEMAS PROPUESTOS Y SOLUCIONES
+% ==========================================
+
+\begin{frame}{2.4 Ángulo entre dos Rectas}
+\begin{block}{Ejercicios Propuestos}
+\begin{enumerate}
+    \item \textbf{Cálculo de Coordenadas:} El ángulo formado por la recta que pasa por los puntos $(-4, 5)$ y $(3, y)$ con la que pasa por $(-2, 4)$ y $(9, 1)$ es de $135^\circ$. Hallar el valor de $y$.
+
+    \item \textbf{Pendiente entre Rectas:} La recta $L_2$ forma un ángulo de $60^\circ$ con la recta $L_1$. Si la pendiente de $L_1$ es $1$, hallar la pendiente de $L_2$.
+
+    \item \textbf{Pendiente Desconocida:} Hallar la pendiente de una recta que forma un ángulo de $45^\circ$ con la recta que pasa por los puntos de coordenadas $(2, -1)$ y $(5, 3)$.
+
+    \item \textbf{Ecuación de la Recta:} Hallar la ecuación de la recta que pasa por el punto $(2, 5)$ y forma un ángulo de $45^\circ$ con la recta $x - 3y + 6 = 0$.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{ Soluciones}
+\begin{enumerate}
+    \item \textbf{Cálculo de Coordenadas:}
+    El valor de $y$ para obtener un ángulo de $135^\circ$ es
+    \[
+    \boxed{y = 9}.
+    \]
+
+    \item \textbf{Pendiente entre Rectas:}
+    La pendiente de la recta $L_2$ es
+    \[
+    \boxed{m_2 = -(2 + \sqrt{3})}.
+    \]
+
+    \item \textbf{Pendiente Desconocida:}
+    La pendiente buscada es
+    \[
+    \boxed{m_2 = -7}.
+    \]
+
+    \item \textbf{Ecuación de la Recta:}
+    La ecuación de la recta correspondiente es
+    \[
+    \boxed{2x - y + 1 = 0}.
+    \]
+\end{enumerate}
+\end{frame}--
+
+% ==========================================
+% SECCIÓN 2.5: DISTANCIA DE UN PUNTO A UNA RECTA
+% ==========================================
+
+\begin{frame}{2.5 Distancia de un Punto a una Recta}
+\begin{columns}
+\column{0.55\textwidth}
+  \begin{block}{Teorema de la Distancia Perpendicular}
+  La distancia mínima $d$ desde un punto $P_0(x_0, y_0)$ a la recta de ecuación general $L: A x + B y + C = 0$ viene dada por:
   \[
     d(P_0, L) = \frac{|A x_0 + B y_0 + C|}{\sqrt{A^2 + B^2}}
   \]
   \end{block}
 
-  \begin{exampleblock}{Aplicación}
-  Calcule la distancia de $P(0,1)$ a $L: -x + 2y - 7 = 0$.
+  \begin{exampleblock}{Ejemplo de Aplicación}
+  Calcular la distancia de $P(0,1)$ a $L: -x + 2y - 7 = 0$:
   \[
     d = \frac{|(-1)(0) + 2(1) - 7|}{\sqrt{(-1)^2 + 2^2}} = \frac{|-5|}{\sqrt{5}} = \sqrt{5}
   \]
@@ -255,8 +509,8 @@ Encuentre el lugar geométrico de los puntos $P(x,y)$ que equidistan de $A(1,-2)
 \column{0.45\textwidth}
   \begin{center}
   \begin{tikzpicture}[scale=0.75]
-    \draw[->] (-1,0) -- (4,0);
-    \draw[->] (0,-1) -- (0,4);
+    \draw[->] (-1,0) -- (4,0) node[right] {$X$};
+    \draw[->] (0,-1) -- (0,4) node[above] {$Y$};
     \draw[line width=1.2pt, ufroblue] (-0.5,3.5) -- (3.5,0.5) node[right] {$L$};
     \filldraw[mathred] (2.5,3) circle (2pt) node[above right] {$P_0(x_0,y_0)$};
     \draw[dashed, mathred, thick] (2.5,3) -- (1.5,2) node[midway,above left] {$d$};
@@ -266,17 +520,35 @@ Encuentre el lugar geométrico de los puntos $P(x,y)$ que equidistan de $A(1,-2)
 \end{columns}
 \end{frame}
 
-\begin{frame}{2.4 Problemas Propuestos: La Recta}
+
+
+
+\begin{frame}{Ejercicios Resueltos: Distancia Punto-Recta}
 \begin{block}{Ejercicios Propuestos}
 \begin{enumerate}
-    \item \textbf{Forma Canónica:} Una recta $L$ pasa por el punto $P(-2, 3)$ y determina con los ejes coordinados un triángulo de área $12 \text{ u}^2$ ubicado en el segundo cuadrante. Determine la ecuación general de $L$.
-    \item \textbf{Familia de Rectas:} Halle la ecuación de la recta que pasa por la intersección de $L_1: 2x - 3y + 5 = 0$ y $L_2: 3x + y - 9 = 0$, y que además es perpendicular a la recta $L_3: x - 2y + 4 = 0$.
-    \item \textbf{Distancia a la Recta:} Calcule el valor de la constante $C$ para que la distancia de la recta $L: 5x + 12y + C = 0$ al punto $P(2, -1)$ sea igual a $4$ unidades.
+    \item \textbf{Distancia de un Punto a una Recta:} Hallar la distancia del punto $P(-2, 3)$ a la recta de ecuación general $L: 8x - 15y + 34 = 0$.
+
+    \item \textbf{Familia de Paralelas a Distancia Dada:} Hallar las ecuaciones de las rectas paralelas a $8x - 15y + 34 = 0$ que distan $3$ unidades del punto $Q(-2, 3)$.
 \end{enumerate}
 \end{block}
 \end{frame}
 
-% -----------------------------------------------------------------------------
+
+\begin{frame}{Soluciones: Distancia Punto-Recta}
+\begin{enumerate}
+    \item \textbf{Distancia de un Punto a una Recta:}
+    \[
+   \boxed{d = \frac{27}{17}\text{ unidades}}.
+    \]
+
+    \item \textbf{Familia de Paralelas a Distancia Dada:}
+
+    \[
+    \boxed{8x - 15y + 112 = 0} \quad \text{y} \quad \boxed{8x - 15y + 10 = 0}.
+    \]
+\end{enumerate}
+\end{frame}
+
 \section{La Circunferencia}
 % -----------------------------------------------------------------------------
 
