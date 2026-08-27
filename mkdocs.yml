@@ -1,0 +1,29 @@
+site_name: Mi Repositorio de Material
+site_description: Notas y documentación ordenada
+
+theme:
+  name: material
+  palette:
+    # Configuración del modo oscuro/claro
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.indexes
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Inicio: index.md
+  - Módulo 1:
+      - Tema 1: modulo-1/tema-1.md
